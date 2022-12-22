@@ -1,0 +1,22 @@
+body {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+main {
+    border: 7px black solid;
+    padding: 2rem 2rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+}
+
+
+input { 
+    display:block;
+}
