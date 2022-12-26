@@ -15,10 +15,10 @@ def touroku():
         dbname = 'ID_pass_database.db'
         conn = sqlite3.connect(dbname)
         cur = conn.cursor()
-        cur.execute('SELECT * FROM name')
+        cur.execute('SELECT * FROM user_ID_Pass')
         count = 0
         for row in cur:
-            if row == username:
+            if row[1] == username:
                 count=count+1
         if count > 0:
             
