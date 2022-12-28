@@ -26,14 +26,14 @@ login_manager = LoginManager()   # LoginManagerクラスのインスタンスを
 login_manager.init_app(app)  
 
 # 投稿DBの作成
-class Post(db.Model):
+class Tweet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(300), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.now(pytz.timezone('Asia/Tokyo')))
 
 # ユーザーDBの作成
-class User(UserMixin, db.Model):
+class User_ID_Pass(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)   # ユーザー名は重複なし
     password = db.Column(db.String(12), nullable=False)   # パスワードは12文字以内
@@ -41,7 +41,7 @@ class User(UserMixin, db.Model):
 # ログインに必要
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return User_ID_Pass.query.get(int(user_id))
 
 # ログインページ
 @app.route('/login', methods=['GET', 'POST'])
@@ -50,12 +50,15 @@ def login():
         username = request.POST.get('username')   # HTMLのフォームからユーザー名を取得
         password = request.POST.get('password')   # HTMLのフォームからパスワードを取得
         
-        user = User.query.filter_by(username=username).first()   # ユーザー名が一致するユーザーを取得
+        user = User_ID_Pass.query.filter_by(username=username).first()   # ユーザー名が一致するユーザーを取得
     
-        if check_password_hash(user.password, password):
-            login_user(user)
-            # ログインしたらトップページに移動
-            return redirect('/index')
+        try:
+            if check_password_hash(user.password, password):
+                login_user(user)
+                # ログインしたらトップページに移動
+                return redirect('/index')
+        except AttributeError:   # ユーザーが存在しない場合、再びログインページに戻る
+            return render_template('login.html')
     
     else:   # request.method == 'GET'
         return render_template('login.html')
