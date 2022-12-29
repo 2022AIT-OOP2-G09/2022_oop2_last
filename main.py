@@ -125,7 +125,6 @@ def touroku():
     
 
 
-
 # TOPページ担当の人へ
 @app.route('/index')
 def toppage():
@@ -135,3 +134,4 @@ def toppage():
 
 if __name__=='__main__':
     app.run(debug=True)
+
