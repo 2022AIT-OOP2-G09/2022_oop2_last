@@ -79,6 +79,7 @@ def login():
 def touroku():
     if request.method == 'GET':
         print('ページ移動しました')
+        return render_template('signUp_form.html')
     elif request.method == 'POST':
         print('入力を受け付けました')
         username = request.form.get("id")
@@ -122,7 +123,6 @@ def touroku():
             ##    }    
             return render_template('login.html') 
     
-
 
 
 # TOPページ担当の人へ
