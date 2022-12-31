@@ -47,8 +47,8 @@ def load_user(user_id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.POST.get('username')   # HTMLのフォームからユーザー名を取得
-        password = request.POST.get('password')   # HTMLのフォームからパスワードを取得
+        username = request.form.get('username')   # HTMLのフォームからユーザー名を取得
+        password = request.form.get('password')   # HTMLのフォームからパスワードを取得
         
         user = User_ID_Pass.query.filter_by(username=username).first()   # ユーザー名が一致するユーザーを取得
     
