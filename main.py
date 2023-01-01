@@ -53,25 +53,49 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('index.html')
 
 # ログインページ
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.POST.get('username')   # HTMLのフォームからユーザー名を取得
-        password = request.POST.get('password')   # HTMLのフォームからパスワードを取得
-        
-        user = User_ID_Pass.query.filter_by(username=username).first()   # ユーザー名が一致するユーザーを取得
-    
-        try:
-            if check_password_hash(user.password, password):
-                login_user(user)
-                # ログインしたらトップページに移動
-                return redirect('/index')
-        except AttributeError:   # ユーザーが存在しない場合、再びログインページに戻る
+        username = request.form.get('username')   # HTMLのフォームからユーザー名を取得
+        password = request.form.get('password')   # HTMLのフォームからパスワードを取得
+
+        dbname = 'ID_pass_database.db'
+        conn = sqlite3.connect(dbname)
+        cur = conn.cursor()
+        cur.execute('SELECT * FROM User_ID_Pass')
+        count_name = 0
+        count_pass = 0
+        for row in cur:
+            if row[1] == username:
+                count_name=count_name+1
+            if row[2] == password:
+                count_pass=count_pass+1
+        if count_name==0:
+            print('このユーザ名は登録されておりません')
+            cur.close()
+            conn.close()
+            count_name=0
+            count_pass=0
             return render_template('login.html')
-    
+        elif count_name==1:
+            if count_pass==0:
+                print('パスワードが間違っています')
+                cur.close()
+                conn.close()
+                ount_name=0
+                count_pass=0
+                return render_template('login.html')
+            else:
+                print('ログイン完了しました')
+                cur.close()
+                conn.close()
+                ount_name=0
+                count_pass=0
+                return render_template('home.html')
+
     else:   # request.method == 'GET'
         return render_template('login.html')
 
@@ -89,6 +113,7 @@ def touroku():
         print(password)
         print(password2)
         if password == password2:
+            print('入力待ちですs')
             dbname = 'ID_pass_database.db'
             conn = sqlite3.connect(dbname)
             cur = conn.cursor()
