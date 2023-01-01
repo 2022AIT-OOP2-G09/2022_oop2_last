@@ -76,7 +76,7 @@ def touroku():
         print(password)
         print(password2)
         if password == password2:
-            print('入力待ちですs')
+            print('入力待ちです')
             dbname = 'ID_pass_database.db'
             conn = sqlite3.connect(dbname)
             cur = conn.cursor()
@@ -103,13 +103,13 @@ def touroku():
                 ##ret = {
                 ##        "message": "登録が完了しました",##メッセージが出てないパスワードの不一致は確認
                 ##    }
-                return render_template('login.html')
+                return render_template('signUp_form.html')
         else:
             print('パスワードが一致していません')
             ##ret = {
             ##        "message": "パスワードが一致しません",##メッセージが出てないパスワードの不一致は確認
-            ##    }    
-            return render_template('login.html') 
+            ##    }
+            return render_template('signUp_form.html') 
     
 
 @app.route('/index')
