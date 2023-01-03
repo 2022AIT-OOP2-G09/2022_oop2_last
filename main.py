@@ -54,10 +54,17 @@ def login():
             else:
                 print('ログイン完了しました')
                 cur.close()
-                conn.close()
                 count_name=0
                 count_pass=0
-                return render_template('home.html')
+
+                curs = conn.cursor()
+                curs.execute('SELECT * FROM Tweet')
+                data = curs.fetchall()
+                for doc in data:
+                    print(doc)
+                curs.close()
+                conn.close()
+                return render_template('home.html', data = data)
 
     else:   # request.method == 'GET'
         return render_template('login.html')
@@ -110,12 +117,11 @@ def touroku():
             ##        "message": "パスワードが一致しません",##メッセージが出てないパスワードの不一致は確認
             ##    }
             return render_template('signUp_form.html') 
-    
+
 
 @app.route('/index')
 def toppage():
     return render_template('index.html')
-
 
 
 if __name__=='__main__':
