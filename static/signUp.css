@@ -1,0 +1,121 @@
+/*全体背景*/
+body{
+    background:url(https://www.beiz.jp/images_L/texture/texture_00003.jpg);
+}
+
+/*主題背景*/
+.plate span{
+    padding:20px;
+    display:block;
+    text-align:center;
+    font-size:2rem;
+}
+span{
+    background:url(https://www.beiz.jp/images_L/wood-texture/wood-texture_00031.jpg);
+    box-shadow:inset 0px -4px 3px rgba(0, 0, 0, 0.5),0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.plate:before,
+.plate:after{
+    content:"";
+    width:7px;
+    height:50px;
+    position:absolute;
+    top:-25px;
+    box-shadow:inset 0px -0px 1px rgba(0, 0, 0, 0.5),0 0 5px rgba(0, 0, 0, 0.5);
+}
+.plate:before{
+    left:16px;
+}
+.plate:after{
+    right:16px;
+}
+#title:before,
+#title:after{
+    background:url(https://www.beiz.jp/images_L/wood-texture/wood-texture_00031.jpg);
+}
+.plate span:before,
+.plate span:after{
+    content:"";
+    border-radius:50%;
+    position:absolute;
+    top:25px;
+    box-shadow:inset 0px -1px 2px rgba(0, 0, 0, 0.5),inset 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+#title span:before,
+#title span:after{
+    width:20px;
+    height:20px;
+    background:url(https://www.beiz.jp/images_L/wood-texture/wood-texture_00016.jpg);
+}
+#title span:before{
+    left:10px;
+}
+#title span:after{
+    right:10px;
+}
+
+/*新規登録、ログイン背景*/
+.signUp{  
+    
+    width: 300px;
+    height: 370px;
+
+    background:url(https://www.beiz.jp/images_L/texture/texture_00010.jpg);
+    
+    
+    flex-flow: column;
+    justify-content:space-around;
+    padding:20px 0;
+    display: grid;
+    
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+    -webkit-transform:rotate(-3deg);
+    -moz-transform:rotate(-3deg);
+    -ms-transform:rotate(-3deg);
+    -o-transform:rotate(-3deg);
+    transform:rotate(-3deg);
+
+    position:absolute;
+    z-index:-1;
+    top:35%;
+    left: 50%;
+    margin-left: -150px;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.signUp::before{
+    background-image: -webkit-gradient(radial, 30% 30%, 0, 30% 30%, 10, from(#ffe5ed), to(#e50044));	/* マップピンの色 */
+	border-radius: 50%;
+	box-shadow: .5px .5px 4px 1px rgba(128, 128, 128, 0.5);
+	content: '';
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	width: 15px;
+	height: 15px;
+	z-index: 0;
+}
+.signUp::after{
+    background-image: linear-gradient(-80deg, transparent 47%, #333333 47%, #333333 52%, transparent 57%, transparent);
+	content: '';
+	position: absolute;
+	top: 15px;
+	left: 50%;
+	width: 10px;
+	height: 13px;
+	z-index: -1;
+}
+.space{
+    line-height: 40px;
+}
+input { 
+    display:block;
+}
+.entry{
+    text-align: center;
+}
