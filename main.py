@@ -48,7 +48,7 @@ def login():
             conn.close()
             count_name=0
             count_pass=0
-            return render_template('login.html')
+            return render_template('login_UnregisteredName.html')
         elif count_name==1:
             if count_pass==0:
                 print('パスワードが間違っています')
@@ -56,7 +56,7 @@ def login():
                 conn.close()
                 count_name=0
                 count_pass=0
-                return render_template('login.html')
+                return render_template('login_IncorrectPass.html')
             else:
                 print('ログイン完了しました')
                 cur.close()
@@ -103,7 +103,7 @@ def touroku():
                 ##}
                 cur.close()
                 conn.close()
-                return render_template('signUp_form.html')
+                return render_template('signUp_form_AlreadyName.html')
             else:
                 params = (username,password)
                 cur.execute('INSERT INTO User_ID_Pass values(NULL,?,?)',params)
@@ -114,13 +114,13 @@ def touroku():
                 ##ret = {
                 ##        "message": "登録が完了しました",##メッセージが出てないパスワードの不一致は確認
                 ##    }
-                return render_template('signUp_form.html')
+                return render_template('signUp_form_RegistrationDone.html')
         else:
             print('パスワードが一致していません')
             ##ret = {
             ##        "message": "パスワードが一致しません",##メッセージが出てないパスワードの不一致は確認
             ##    }
-            return render_template('signUp_form.html') 
+            return render_template('signUp_form_NotMatchPass.html') 
         
 # 新規投稿ページ
 @app.route('/post', methods=['POST', 'GET'])
