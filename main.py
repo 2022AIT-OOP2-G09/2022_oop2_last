@@ -10,6 +10,9 @@ from watchdog.observers import Observer
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from datetime import datetime
+import pytz
+
 
 # create the app
 app = Flask(__name__)
@@ -117,6 +120,41 @@ def touroku():
             ##        "message": "パスワードが一致しません",##メッセージが出てないパスワードの不一致は確認
             ##    }
             return render_template('signUp_form.html') 
+        
+# 新規投稿ページ
+@app.route('/post', methods=['POST', 'GET'])
+def post():
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+        picture = request.form.get('picture')
+        created_at = datetime.now(pytz.timezone('Asia/Tokyo'))
+        
+        dbname = 'ID_pass_database.db'
+        conn = sqlite3.connect(dbname)
+        cur = conn.cursor()
+        cur.execute('SELECT * FROM Tweet')
+        
+        cur.execute('INSERT INTO Tweet values(NULL,?,?,?,?)', (title,content,picture,created_at))
+        conn.commit()
+        cur.close()
+       
+        
+        curs = conn.cursor()
+        curs.execute('SELECT * FROM Tweet')
+        data = curs.fetchall()
+        for datum in data:
+            print(datum)
+        curs.close()
+        conn.close()
+        
+        return render_template('home.html', data = data)    
+    
+    else:
+        return render_template('post.html')
+        
+
+
 
 
 @app.route('/index')
