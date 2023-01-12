@@ -10,7 +10,7 @@ body{
     text-align:center;
     font-size:2rem;
 }
-.title{
+span{
     background:url(https://www.beiz.jp/images_L/wood-texture/wood-texture_00031.jpg);
     box-shadow:inset 0px -4px 3px rgba(0, 0, 0, 0.5),0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -55,83 +55,62 @@ body{
     right:10px;
 }
 
-
-.plate2{
-    background: repeating-linear-gradient(-45deg, rgba(139,198,202,0.58), rgba(139, 198, 202, 0.58) 10px, rgba(255, 255, 255, 0.48) 0, rgba(255, 255, 255, 0.48) 20px);
-    padding: 1em;
-    color: #65513f;
-    transform: rotate(-3deg);
-    display: inline-block;
-}
-
-
-.plate3{
-    background: #DBD0E4;
-    background-image: radial-gradient(#fff 20%, transparent 0), radial-gradient(#fff 20%, transparent 0);
-    background-position: 0 0, 10px 10px;
-    background-size: 20px 20px;
-    padding: 1em;
-    color: #593869;
-    background-image: linear-gradient(-45deg, rgba(227,155,140,.4) 25%, transparent 25%, transparent 50%, rgba(227,155,140,.4) 50%, rgba(227,155,140,.4) 75%, transparent 75%, transparent 100%);
-    border-left:2px dotted rgba(0,0,0,.1);
-    border-right:2px dotted rgba(0,0,0,.1);
-    box-shadow:0 0 5px rgba(0,0,0,.2);
-    transform: rotate(-3deg);
-    display: inline-block;
-}
-
-
-.plate4{
-    background-color: rgba(100, 100, 100, 0.61);
-    border-left:4px solid #8BC6CA;
-    padding: 1em;
-    color: #454545;
-    transform: rotate(-3deg);
-    display: inline-block;
-}
-
-
-.side{
-    display: flex;
-    justify-content: space-around;
-}
-
-.post {
-    width: 400px;
+/*新規投稿*/
+.entry{  
     
+    width: 300px;
+    height: 350px;
+
     background:url(https://www.beiz.jp/images_L/texture/texture_00010.jpg);
-    display: inline-block;
+    
     display:flex;
     flex-flow: column;
     justify-content:space-around;
+    text-align: center;
     padding:20px 0;
     
     -webkit-box-shadow:none;
     -moz-box-shadow:none;
     box-shadow:none;
+    -webkit-transform:rotate(-3deg);
+    -moz-transform:rotate(-3deg);
+    -ms-transform:rotate(-3deg);
+    -o-transform:rotate(-3deg);
+    transform:rotate(-3deg);
 
-    position:relative;
+    position:absolute;
     z-index:-1;
+    top:35%;
     left:50%;
-    margin-left: -200px;
+    margin-left: -150px;
     -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  }
-  .tape{
-    position: absolute;
-    top: -2em;
-    background-color: rgba(100,100,100,.3);
-    border-left:4px solid #8BC6CA;
-    color: #454545;
-    transform: rotate(-3deg);
-  }
-  .post p {
-    color: #454545;
-  }
-
-.space{
-    margin-top: 30px;
+}
+.entry::before{
+    background-image: -webkit-gradient(radial, 30% 30%, 0, 30% 30%, 10, from(#ffe5ed), to(#e50044));	/* マップピンの色 */
+	border-radius: 50%;
+	box-shadow: .5px .5px 4px 1px rgba(128, 128, 128, 0.5);
+	content: '';
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	width: 15px;
+	height: 15px;
+	z-index: 0;
+}
+.entry::after{
+    background-image: linear-gradient(-80deg, transparent 47%, #333333 47%, #333333 52%, transparent 57%, transparent);
+	content: '';
+	position: absolute;
+	top: 15px;
+	left: 50%;
+	width: 10px;
+	height: 13px;
+	z-index: -1;
 }
 
-
+.space{
+    line-height: 40px;
+}
