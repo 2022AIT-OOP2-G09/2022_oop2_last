@@ -4,29 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/post.css">
     <title>投稿用フォーム</title>
 </head>
 <body>
-    <h1>新規投稿</h1>
-    <p>
-        <a href="/home">homeに戻る</a>
-    </p>
-    <form method="POST">
-        <div>
-            <label for="title">タイトル</label>
-            <input type="text" name="title" id="title" required>
+    <div class="plate" id="title">
+        <h1><span>ツイッターみたいなやつ</span></h1>
+    </div>
+    <div class="entry">
+        <h2>新規投稿</h2>
+        <div class="space">
+        <form method="POST">
+            <div>
+                <label for="title">タイトル：</label>
+                <input type="text" name="title" id="title" required>
+            </div>
+            <div>
+                <label for="content">内容&ensp;&ensp;&ensp;&ensp;：</label>
+                <input type="text" name="content" id="content" required>
+            </div>
+            <div>
+                <label for="picture">画像：png/jpegのみ選択可能</label>
+                <input type="file" name="picture" id="picture" accept="image/png, image=/jpeg">
+            </div>
+            <div>
+                <input type="submit" value="新規投稿">
+            </div>
+        </form>
+        <p>
+            <a href="/home">homeに戻る</a>
+        </p>
         </div>
-        <div>
-            <label for="content">内容</label>
-            <input type="text" name="content" id="content" required>
-        </div>
-        <div>
-            <label for="picture">画像：png/jpegのみ選択可能</label>
-            <input type="file" name="picture" id="picture" accept="image/png, image=/jpeg">
-        </div>
-        <div>
-            <input type="submit" value="新規投稿">
-        </div>
-    </form>
+    </div>
 </body>
 </html>

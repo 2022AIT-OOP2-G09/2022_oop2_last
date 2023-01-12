@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/login.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="plate" id="title">
+        <h1><span>ツイッターみたいなやつ</span></h1>
+    </div>
+    <div class="login">
+        <h2>ログイン画面</h2>
+        <form method="POST">
+            <div class="space">
+                <div>
+                    <label for="username">ユーザー名</label>
+                    <input type="text" name="username" id="username">
+                </div>
+                <div>
+                    <label for="password">パスワード</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div>
+                    <input type="submit" value="ログイン">
+                </div>
+            </div>
+            <p style="color: red;">このユーザ名は登録されておりません</p>
+        </form>
+        <ol>
+            <a href="/signUp_form">新規登録</a>
+        </ol>
+    </div>
+</body>
+</html>

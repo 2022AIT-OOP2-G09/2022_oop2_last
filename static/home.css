@@ -1,0 +1,137 @@
+/*全体背景*/
+body{
+    background:url(https://www.beiz.jp/images_L/texture/texture_00003.jpg);
+}
+
+/*主題背景*/
+.plate span{
+    padding:20px;
+    display:block;
+    text-align:center;
+    font-size:2rem;
+}
+.title{
+    background:url(https://www.beiz.jp/images_L/wood-texture/wood-texture_00031.jpg);
+    box-shadow:inset 0px -4px 3px rgba(0, 0, 0, 0.5),0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.plate:before,
+.plate:after{
+    content:"";
+    width:7px;
+    height:50px;
+    position:absolute;
+    top:-25px;
+    box-shadow:inset 0px -0px 1px rgba(0, 0, 0, 0.5),0 0 5px rgba(0, 0, 0, 0.5);
+}
+.plate:before{
+    left:16px;
+}
+.plate:after{
+    right:16px;
+}
+#title:before,
+#title:after{
+    background:url(https://www.beiz.jp/images_L/wood-texture/wood-texture_00031.jpg);
+}
+.plate span:before,
+.plate span:after{
+    content:"";
+    border-radius:50%;
+    position:absolute;
+    top:25px;
+    box-shadow:inset 0px -1px 2px rgba(0, 0, 0, 0.5),inset 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+#title span:before,
+#title span:after{
+    width:20px;
+    height:20px;
+    background:url(https://www.beiz.jp/images_L/wood-texture/wood-texture_00016.jpg);
+}
+#title span:before{
+    left:10px;
+}
+#title span:after{
+    right:10px;
+}
+
+
+.plate2{
+    background: repeating-linear-gradient(-45deg, rgba(139,198,202,0.58), rgba(139, 198, 202, 0.58) 10px, rgba(255, 255, 255, 0.48) 0, rgba(255, 255, 255, 0.48) 20px);
+    padding: 1em;
+    color: #65513f;
+    transform: rotate(-3deg);
+    display: inline-block;
+}
+
+
+.plate3{
+    background: #DBD0E4;
+    background-image: radial-gradient(#fff 20%, transparent 0), radial-gradient(#fff 20%, transparent 0);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+    padding: 1em;
+    color: #593869;
+    background-image: linear-gradient(-45deg, rgba(227,155,140,.4) 25%, transparent 25%, transparent 50%, rgba(227,155,140,.4) 50%, rgba(227,155,140,.4) 75%, transparent 75%, transparent 100%);
+    border-left:2px dotted rgba(0,0,0,.1);
+    border-right:2px dotted rgba(0,0,0,.1);
+    box-shadow:0 0 5px rgba(0,0,0,.2);
+    transform: rotate(-3deg);
+    display: inline-block;
+}
+
+
+.plate4{
+    background-color: rgba(100, 100, 100, 0.61);
+    border-left:4px solid #8BC6CA;
+    padding: 1em;
+    color: #454545;
+    transform: rotate(-3deg);
+    display: inline-block;
+}
+
+
+.side{
+    display: flex;
+    justify-content: space-around;
+}
+
+.post {
+    width: 400px;
+    
+    background:url(https://www.beiz.jp/images_L/texture/texture_00010.jpg);
+    display: inline-block;
+    display:flex;
+    flex-flow: column;
+    justify-content:space-around;
+    padding:20px 0;
+    
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+
+    position:relative;
+    z-index:-1;
+    left:50%;
+    margin-left: -200px;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  }
+  .tape{
+    position: absolute;
+    top: -2em;
+    background-color: rgba(100,100,100,.3);
+    border-left:4px solid #8BC6CA;
+    color: #454545;
+    transform: rotate(-3deg);
+  }
+  .post p {
+    color: #454545;
+  }
+
+.space{
+    margin-top: 30px;
+}
+
+

@@ -17,6 +17,8 @@ import pytz
 # create the app
 app = Flask(__name__)
 
+username = ""
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -25,6 +27,7 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        global username
         username = request.form.get('username')   # HTMLのフォームからユーザー名を取得
         password = request.form.get('password')   # HTMLのフォームからパスワードを取得
 
@@ -45,7 +48,7 @@ def login():
             conn.close()
             count_name=0
             count_pass=0
-            return render_template('login.html')
+            return render_template('login_UnregisteredName.html')
         elif count_name==1:
             if count_pass==0:
                 print('パスワードが間違っています')
@@ -53,7 +56,7 @@ def login():
                 conn.close()
                 count_name=0
                 count_pass=0
-                return render_template('login.html')
+                return render_template('login_IncorrectPass.html')
             else:
                 print('ログイン完了しました')
                 cur.close()
@@ -63,8 +66,6 @@ def login():
                 curs = conn.cursor()
                 curs.execute('SELECT * FROM Tweet')
                 data = curs.fetchall()
-                for doc in data:
-                    print(doc)
                 curs.close()
                 conn.close()
                 return render_template('home.html', data = data)
@@ -102,7 +103,7 @@ def touroku():
                 ##}
                 cur.close()
                 conn.close()
-                return render_template('signUp_form.html')
+                return render_template('signUp_form_AlreadyName.html')
             else:
                 params = (username,password)
                 cur.execute('INSERT INTO User_ID_Pass values(NULL,?,?)',params)
@@ -113,18 +114,19 @@ def touroku():
                 ##ret = {
                 ##        "message": "登録が完了しました",##メッセージが出てないパスワードの不一致は確認
                 ##    }
-                return render_template('signUp_form.html')
+                return render_template('signUp_form_RegistrationDone.html')
         else:
             print('パスワードが一致していません')
             ##ret = {
             ##        "message": "パスワードが一致しません",##メッセージが出てないパスワードの不一致は確認
             ##    }
-            return render_template('signUp_form.html') 
+            return render_template('signUp_form_NotMatchPass.html') 
         
 # 新規投稿ページ
 @app.route('/post', methods=['POST', 'GET'])
 def post():
     if request.method == 'POST':
+        global username
         title = request.form.get('title')
         content = request.form.get('content')
         picture = request.form.get('picture')
@@ -136,7 +138,9 @@ def post():
         cur = conn.cursor()
         cur.execute('SELECT * FROM Tweet')
         
-        cur.execute('INSERT INTO Tweet values(NULL,?,?,?,?)', (title,content,Spicture,created_at))
+
+        cur.execute('INSERT INTO Tweet values(?,?,?,?,?)', (username,title,content,Spicture,created_at))
+
         conn.commit()
         cur.close()
        
@@ -149,7 +153,7 @@ def post():
         curs.close()
         conn.close()
         
-        return render_template('post.html', data = data)    
+        return render_template('home.html', data = data)    
     else:
         return render_template('post.html')
         

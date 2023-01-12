@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/home.css">
     <title>Document</title>
 </head>
 <body>
+    <div class="plate" id="title">
+        <h1><span class="title">ツイッターみたいなやつ</span></h1>
+    </div>
     <header>
-        <a href="/login">ログイン画面に戻る</a>
-        <a href="/post">新規投稿</a>
-        <a href="">投稿リスト</a>
+        <div class="side">
+            <div class="plate2"><a href="/login">ログイン画面に戻る</a></div>
+            <div class="plate3"><a href="/post">新規投稿</a></div>
+            <div class="plate4"><a href="">投稿リスト</a></div>
+        </div>
     </header>
     <main>
-        {% for item in data %}
-        <div>
-            <h3>{{item[1]}}</h3>
-            <p>{{item[2]}}</p>
-            <th>{{item[0]}}</th>
-            <th>{{item[3]}}</th>
+        <div class="space">
+            {% for item in data %}
+            <div class="post">
+                <span class="tape"><h3>{{item[1]}}</h3></span>
+                <div>{{item[2]}}</div>
+                <th>{{item[0]}}</th>
+                <th>{{item[3]}}</th>
+            </div>
+            <br><br>
+            {% endfor %}
         </div>
-        {% endfor %}
     </main>
 </body>
 </html>
