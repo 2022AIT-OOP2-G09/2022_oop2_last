@@ -66,8 +66,6 @@ def login():
                 curs = conn.cursor()
                 curs.execute('SELECT * FROM Tweet')
                 data = curs.fetchall()
-                for doc in data:
-                    print(doc)
                 curs.close()
                 conn.close()
                 return render_template('home.html', data = data)
@@ -139,7 +137,7 @@ def post():
         cur = conn.cursor()
         cur.execute('SELECT * FROM Tweet')
         
-        cur.execute('INSERT INTO Tweet values(NULL,?,?,?,?)', (username,title,content,picture,created_at))
+        cur.execute('INSERT INTO Tweet values(?,?,?,?,?)', (username,title,content,picture,created_at))
         conn.commit()
         cur.close()
        
@@ -152,7 +150,7 @@ def post():
         curs.close()
         conn.close()
         
-        return render_template('post.html', data = data)    
+        return render_template('home.html', data = data)    
     else:
         return render_template('post.html')
         
