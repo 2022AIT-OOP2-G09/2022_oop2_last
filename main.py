@@ -130,6 +130,7 @@ def post():
         title = request.form.get('title')
         content = request.form.get('content')
         picture = request.form.get('picture')
+        Spicture = f'./pictures/{picture}'
         created_at = datetime.now(pytz.timezone('Asia/Tokyo'))
         
         dbname = 'ID_pass_database.db'
@@ -137,7 +138,9 @@ def post():
         cur = conn.cursor()
         cur.execute('SELECT * FROM Tweet')
         
-        cur.execute('INSERT INTO Tweet values(?,?,?,?,?)', (username,title,content,picture,created_at))
+
+        cur.execute('INSERT INTO Tweet values(?,?,?,?,?)', (username,title,content,Spicture,created_at))
+
         conn.commit()
         cur.close()
        
