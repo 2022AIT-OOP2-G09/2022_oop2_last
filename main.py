@@ -113,7 +113,7 @@ def touroku():
                 ##ret = {
                 ##        "message": "登録が完了しました",##メッセージが出てないパスワードの不一致は確認
                 ##    }
-                return render_template('signUp_form.html')
+                return render_template('signUp_form_RegistrationDone.html')
         else:
             print('パスワードが一致していません')
             ##ret = {
