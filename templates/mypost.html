@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="plate" id="title">
-        <h1><span class="title">ツイッターみたいなやつ</span></h1>
+        <h1><span class="title">投稿リスト</span></h1>
     </div>
     <header>
         <div class="side">
@@ -25,14 +25,8 @@
                 <span class="tape"><h3>{{item[1]}}</h3></span>
                 <div>{{item[2]}}</div>
                 <th>{{item[0]}}</th>
-                <th>{{item[4]}}</th>
-                {% if (item[3]!="") %}
-                {% if (item[3]!=None) %}
-                <img src="static/pictures/{{item[3]}}">
-                {% endif %}
-                {% endif %}
+                <th>{{item[3]}}</th>
             </div>
-            <br><br>
             {% endfor %}
         </div>
     </main>
