@@ -148,8 +148,7 @@ def post():
         curs.close()
         conn.close()
         
-        return render_template('home.html', data = data)    
-    
+        return render_template('post.html', data = data)    
     else:
         return render_template('post.html')
         
