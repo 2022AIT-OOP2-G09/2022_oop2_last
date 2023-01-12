@@ -17,6 +17,8 @@ import pytz
 # create the app
 app = Flask(__name__)
 
+username = ""
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -25,6 +27,7 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        global username
         username = request.form.get('username')   # HTMLのフォームからユーザー名を取得
         password = request.form.get('password')   # HTMLのフォームからパスワードを取得
 
@@ -125,6 +128,7 @@ def touroku():
 @app.route('/post', methods=['POST', 'GET'])
 def post():
     if request.method == 'POST':
+        global username
         title = request.form.get('title')
         content = request.form.get('content')
         picture = request.form.get('picture')
@@ -135,7 +139,7 @@ def post():
         cur = conn.cursor()
         cur.execute('SELECT * FROM Tweet')
         
-        cur.execute('INSERT INTO Tweet values(NULL,?,?,?,?)', (title,content,picture,created_at))
+        cur.execute('INSERT INTO Tweet values(NULL,?,?,?,?)', (username,title,content,picture,created_at))
         conn.commit()
         cur.close()
        
