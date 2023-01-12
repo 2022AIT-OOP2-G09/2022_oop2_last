@@ -153,16 +153,24 @@ def post():
         return render_template('home.html', data = data)    
     else:
         return render_template('post.html')
-        
 
-
-
+# 投稿リストページ
+@app.route('/mypost')
+def mypost():
+    dbname = 'ID_pass_database.db'
+    conn = sqlite3.connect(dbname)
+    curs = conn.cursor()
+    unTmp = '\''+username+'\''
+    curs.execute('SELECT * FROM Tweet WHERE id = ' + unTmp)
+    data = curs.fetchall()
+    curs.close()
+    conn.close()
+    return render_template('mypost.html', data = data)
 
 @app.route('/index')
 def toppage():
     return render_template('index.html')
-
-
+    
 if __name__=='__main__':
     app.run(debug=True)
 
