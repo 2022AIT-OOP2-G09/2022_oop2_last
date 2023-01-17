@@ -66,6 +66,7 @@ def login():
                 curs = conn.cursor()
                 curs.execute('SELECT * FROM Tweet')
                 data = curs.fetchall()
+                print(data)
                 curs.close()
                 conn.close()
                 return render_template('home.html', data = data)
@@ -163,17 +164,23 @@ def mypost():
     dbname = 'ID_pass_database.db'
     conn = sqlite3.connect(dbname)
     curs = conn.cursor()
-    unTmp = '\''+username+'\''
-    curs.execute('SELECT * FROM Tweet WHERE id = ' + unTmp)
+    curs.execute('SELECT * FROM Tweet')
     data = curs.fetchall()
+    print(data)
+    print(username)
+    my_data = []
+    for i in range(len(data)):
+        if data[i][0] == username:
+            my_data.append(list(data[i]))
+                
+    print(my_data)
     curs.close()
     conn.close()
-    return render_template('mypost.html', data = data)
+    return render_template('mypost.html', data = my_data)
 
 @app.route('/index')
 def toppage():
     return render_template('index.html')
     
 if __name__=='__main__':
-    app.run(debug=True)
-
+    app.run()
