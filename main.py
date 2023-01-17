@@ -125,7 +125,6 @@ def mypost():
     curs.execute('SELECT * FROM Tweet')
     data = curs.fetchall()
     print(data)
-    print(username)
     curs.close()
     conn.close()
     return render_template('home.html', data = data)
