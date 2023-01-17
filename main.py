@@ -62,14 +62,8 @@ def login():
                 cur.close()
                 count_name=0
                 count_pass=0
-
-                curs = conn.cursor()
-                curs.execute('SELECT * FROM Tweet')
-                data = curs.fetchall()
-                print(data)
-                curs.close()
                 conn.close()
-                return render_template('home.html', data = data)
+                return render_template('home.html')
 
     else:   # request.method == 'GET'
         return render_template('login.html')
@@ -122,6 +116,19 @@ def touroku():
             ##        "message": "パスワードが一致しません",##メッセージが出てないパスワードの不一致は確認
             ##    }
             return render_template('signUp_form_NotMatchPass.html') 
+
+@app.route('/home')
+def mypost():
+    dbname = 'ID_pass_database.db'
+    conn = sqlite3.connect(dbname)
+    curs = conn.cursor()
+    curs.execute('SELECT * FROM Tweet')
+    data = curs.fetchall()
+    print(data)
+    print(username)
+    curs.close()
+    conn.close()
+    return render_template('home.html', data = data)
         
 # 新規投稿ページ
 @app.route('/post', methods=['POST', 'GET'])
