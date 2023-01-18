@@ -62,8 +62,17 @@ def login():
                 cur.close()
                 count_name=0
                 count_pass=0
+
+                curs = conn.cursor()
+                curs.execute('SELECT * FROM Tweet')
+                data = curs.fetchall()
+                datalist = []
+                for i in range(len(data)):
+                    datalist.insert(0, list(data[i]))
+                print(data)
+                curs.close()
                 conn.close()
-                return render_template('home.html')
+                return render_template('home.html', data = datalist)
 
     else:   # request.method == 'GET'
         return render_template('login.html')
@@ -117,17 +126,6 @@ def touroku():
             ##    }
             return render_template('signUp_form_NotMatchPass.html') 
 
-@app.route('/home')
-def mypost():
-    dbname = 'ID_pass_database.db'
-    conn = sqlite3.connect(dbname)
-    curs = conn.cursor()
-    curs.execute('SELECT * FROM Tweet')
-    data = curs.fetchall()
-    print(data)
-    curs.close()
-    conn.close()
-    return render_template('home.html', data = data)
         
 # 新規投稿ページ
 @app.route('/post', methods=['POST', 'GET'])
@@ -155,12 +153,13 @@ def post():
         curs = conn.cursor()
         curs.execute('SELECT * FROM Tweet')
         data = curs.fetchall()
-        for datum in data:
-            print(datum)
+        datalist = []
+        for i in range(len(data)):
+            datalist.insert(0, list(data[i]))
         curs.close()
         conn.close()
         
-        return render_template('home.html', data = data)    
+        return render_template('home.html', data = datalist)    
     else:
         return render_template('post.html')
 
