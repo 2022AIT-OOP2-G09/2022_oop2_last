@@ -125,27 +125,6 @@ def touroku():
             ##        "message": "パスワードが一致しません",##メッセージが出てないパスワードの不一致は確認
             ##    }
             return render_template('signUp_form_NotMatchPass.html') 
-
-<<<<<<< Updated upstream
-=======
-@app.route('/home')
-def home():
-    dbname = 'ID_pass_database.db'
-    conn = sqlite3.connect(dbname)
-    curs = conn.cursor()
-    curs.execute('SELECT * FROM Tweet')
-    data = curs.fetchall()
-    print(data)
-    print(username)
-    my_data = []
-    for i in range(len(data)):
-            my_data.insert(0, list(data[i]))
-                
-    print(my_data)
-    curs.close()
-    conn.close()
-    return render_template('home.html', data = my_data)
->>>>>>> Stashed changes
         
 # 新規投稿ページ
 @app.route('/post', methods=['POST', 'GET'])
@@ -168,7 +147,7 @@ def post():
 
         conn.commit()
         cur.close()
-        
+
         
         curs = conn.cursor()
         curs.execute('SELECT * FROM Tweet')
