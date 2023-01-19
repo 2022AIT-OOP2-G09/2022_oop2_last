@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../static/home.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="plate" id="title">
         <h1><span class="title">ツイッターみたいなやつ</span></h1>
@@ -28,15 +30,12 @@
                 <div>{{item[2]}}</div>
                 <th>{{item[0]}}</th>
                 <th>{{item[4]}}</th>
-                {% if (item[3]!="") %}
-                {% if (item[3]!=None) %}
-                <img src="{{item[3]}}">
-                {% endif %}
-                {% endif %}
+                {% if (item[3]!="") %} {% if (item[3]!=None) %}{% if (item[3] != "static/pictures/") %}
+                <img src="{{item[3]}}"> {% endif %} {% endif %} {% endif %}
             </div>
-            <br><br>
-            {% endfor %}
+            <br><br> {% endfor %}
         </div>
     </main>
 </body>
+
 </html>
