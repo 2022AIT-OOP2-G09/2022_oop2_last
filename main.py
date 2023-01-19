@@ -67,10 +67,13 @@ def login():
                 curs = conn.cursor()
                 curs.execute('SELECT * FROM Tweet')
                 data = curs.fetchall()
+                datalist = []
+                for i in range(len(data)):
+                    datalist.insert(0, list(data[i]))
                 print(data)
                 curs.close()
                 conn.close()
-                return render_template('home.html', data = data)
+                return render_template('home.html', data = datalist)
 
     else:   # request.method == 'GET'
         return render_template('login.html')
@@ -146,17 +149,18 @@ def post():
 
         conn.commit()
         cur.close()
-       
+
         
         curs = conn.cursor()
         curs.execute('SELECT * FROM Tweet')
         data = curs.fetchall()
-        for datum in data:
-            print(datum)
+        datalist = []
+        for i in range(len(data)):
+            datalist.insert(0, list(data[i]))
         curs.close()
         conn.close()
         
-        return render_template('home.html', data = data)    
+        return render_template('home.html', data = datalist)    
     else:
         return render_template('post.html')
 
@@ -179,6 +183,20 @@ def mypost():
     curs.close()
     conn.close()
     return render_template('mypost.html', data = my_data)
+
+@app.route('/home')
+def home():
+    dbname = 'ID_pass_database.db'
+    conn = sqlite3.connect(dbname)
+    curs = conn.cursor()
+    curs.execute('SELECT * FROM Tweet')
+    data = curs.fetchall()
+    datalist = []
+    for i in range(len(data)):
+        datalist.insert(0, list(data[i]))
+    curs.close()
+    conn.close()
+    return render_template('home.html', data = datalist)
 
 @app.route('/index')
 def toppage():
