@@ -135,8 +135,9 @@ def post():
         title = request.form.get('title')
         content = request.form.get('content')
         file = request.files['picture']
-        file.save(os.path.join('static/pictures', file.filename))        
         Spicture = f'static/pictures/{file.filename}'
+        if Spicture != 'static/pictures/':
+            file.save(os.path.join('static/pictures', file.filename))        
         created_at = datetime.now(pytz.timezone('Asia/Tokyo'))
         
         dbname = 'ID_pass_database.db'
