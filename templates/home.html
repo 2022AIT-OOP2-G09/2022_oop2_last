@@ -26,15 +26,11 @@
                 <span class="tape"><div>{{item[1]}}</div></span>
                 <div>name: {{item[0]}}</div>
                 <div>&emsp;{{item[2]}}</div>
-                {% if (item[3]!="") %}
-                {% if (item[3]!=None) %}
-                <img src="{{item[3]}}">
-                {% endif %}
-                {% endif %}
+                {% if (item[3]!="") %} {% if (item[3]!=None) %}{% if (item[3] != "static/pictures/") %}
+                <img src="{{item[3]}}"> {% endif %} {% endif %} {% endif %}
                 <div class="right">{{item[4]}}</div>
             </div>
-            <br><br>
-            {% endfor %}
+            <br><br>{% endfor %}
         </div>
     </main>
 </body>
