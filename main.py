@@ -174,6 +174,7 @@ def mypost():
         if data[i][0] == username:
             my_data.append(list(data[i]))
                 
+    print(my_data)
     curs.close()
     conn.close()
     return render_template('mypost.html', data = my_data)
