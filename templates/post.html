@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../static/post.css">
     <title>投稿用フォーム</title>
 </head>
+
 <body>
     <div class="plate" id="title">
         <h1><span>ツイッターみたいなやつ</span></h1>
@@ -14,27 +16,28 @@
     <div class="entry">
         <h2>新規投稿</h2>
         <div class="space">
-        <form method="POST" enctype="multipart/form-data">
-            <div>
-                <label for="title">タイトル：</label>
-                <input type="text" name="title" id="title" required>
-            </div>
-            <div>
-                <label for="content">内容&ensp;&ensp;&ensp;&ensp;：</label>
-                <textarea name="content" rows="7" cols="30" required></textarea>
-            </div>
-            <div>
-                <label for="picture">画像：png/jpegのみ選択可能</label>
-                <input type="file" name="picture" id="picture" accept="image/png, image=/jpeg">
-            </div>
-            <div>
-                <input type="submit" value="新規投稿">
-            </div>
-        </form>
-        <p>
-            <a href="/home">homeに戻る</a>
-        </p>
+            <form method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="title">タイトル：</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div>
+                    <label for="content">内容&ensp;&ensp;&ensp;&ensp;：</label>
+                    <textarea name="content" rows="7" cols="30" required></textarea>
+                </div>
+                <div>
+                    <label for="picture">画像：png/jpegのみ選択可能</label>
+                    <input type="file" name="picture" id="picture" accept="image/png, image=/jpeg">
+                </div>
+                <div>
+                    <input type="submit" value="新規投稿">
+                </div>
+            </form>
+            <p>
+                <a href="/home">homeに戻る</a>
+            </p>
         </div>
     </div>
 </body>
+
 </html>
