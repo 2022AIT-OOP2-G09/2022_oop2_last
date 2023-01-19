@@ -1,15 +1,8 @@
 import os
 from flask import Flask
-from flask import jsonify
-from flask import render_template, request, redirect
-
-
-from watchdog.events import FileSystemEventHandler
-from watchdog.observers import Observer
-
+from flask import render_template, request
 
 import sqlite3
-from werkzeug.security import generate_password_hash, check_password_hash
 
 from datetime import datetime
 import pytz
