@@ -12,6 +12,7 @@ import pytz
 app = Flask(__name__)
 
 username = ""
+count = 0
 
 @app.route('/')
 def index():
@@ -124,26 +125,26 @@ def touroku():
 @app.route('/post', methods=['POST', 'GET'])
 def post():
     if request.method == 'POST':
-        global username
-        title = request.form.get('title')
-        content = request.form.get('content')
-        file = request.files['picture']    
-
-        Spicture = f'static/pictures/{file.filename}'
-        if Spicture != 'static/pictures/':
-            file.save(os.path.join('static/pictures', file.filename))        
-        created_at = datetime.now(pytz.timezone('Asia/Tokyo'))
-        
         dbname = 'ID_pass_database.db'
         conn = sqlite3.connect(dbname)
-        cur = conn.cursor()
-        cur.execute('SELECT * FROM Tweet')
-        
+        global count
+        if count == 1:
+            global username
+            title = request.form.get('title')
+            content = request.form.get('content')
+            file = request.files['picture']    
 
-        cur.execute('INSERT INTO Tweet values(?,?,?,?,?)', (username,title,content,Spicture,created_at))
+            Spicture = f'static/pictures/{file.filename}'
+            if Spicture != 'static/pictures/':
+                file.save(os.path.join('static/pictures', file.filename))        
+            created_at = datetime.now(pytz.timezone('Asia/Tokyo'))
+            cur = conn.cursor()
+            cur.execute('SELECT * FROM Tweet')
+            
+            cur.execute('INSERT INTO Tweet values(?,?,?,?,?)', (username,title,content,Spicture,created_at))
 
-        conn.commit()
-        cur.close()
+            conn.commit()
+            cur.close()
 
         
         curs = conn.cursor()
@@ -154,30 +155,58 @@ def post():
             datalist.insert(0, list(data[i]))
         curs.close()
         conn.close()
+        count = 0
         
         return render_template('home.html', data = datalist)    
     else:
-        return render_template('post.html')
+        if username == "":
+            dbname = 'ID_pass_database.db'
+            conn = sqlite3.connect(dbname)
+            curs = conn.cursor()
+            curs.execute('SELECT * FROM Tweet')
+            data = curs.fetchall()
+            datalist = []
+            for i in range(len(data)):
+                datalist.insert(0, list(data[i]))
+            curs.close()
+            conn.close()
+            return render_template('home.html', data = datalist) 
+        else:
+            count = 1 
+            return render_template('post.html')
 
 # 投稿リストページ
 @app.route('/mypost')
 def mypost():
-    dbname = 'ID_pass_database.db'
-    conn = sqlite3.connect(dbname)
-    curs = conn.cursor()
-    curs.execute('SELECT * FROM Tweet')
-    data = curs.fetchall()
-    print(data)
-    print(username)
-    my_data = []
-    for i in range(len(data)):
-        if data[i][0] == username:
-            my_data.append(list(data[i]))
-                
-    print(my_data)
-    curs.close()
-    conn.close()
-    return render_template('mypost.html', data = my_data)
+    if username == "":
+        dbname = 'ID_pass_database.db'
+        conn = sqlite3.connect(dbname)
+        curs = conn.cursor()
+        curs.execute('SELECT * FROM Tweet')
+        data = curs.fetchall()
+        datalist = []
+        for i in range(len(data)):
+            datalist.insert(0, list(data[i]))
+        curs.close()
+        conn.close()
+        return render_template('home.html', data = datalist) 
+    else:
+        dbname = 'ID_pass_database.db'
+        conn = sqlite3.connect(dbname)
+        curs = conn.cursor()
+        curs.execute('SELECT * FROM Tweet')
+        data = curs.fetchall()
+        print(data)
+        print(username)
+        my_data = []
+        for i in range(len(data)):
+            if data[i][0] == username:
+                my_data.append(list(data[i]))
+                    
+        print(my_data)
+        curs.close()
+        conn.close()
+        return render_template('mypost.html', data = my_data)
 
 @app.route('/home')
 def home():
