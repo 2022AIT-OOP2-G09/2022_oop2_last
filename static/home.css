@@ -97,7 +97,7 @@ body{
 }
 
 .post {
-    width: 400px;
+    width: 500px;
     
     background:url(https://www.beiz.jp/images_L/texture/texture_00010.jpg);
     display: inline-block;
@@ -113,7 +113,7 @@ body{
     position:relative;
     z-index:-1;
     left:50%;
-    margin-left: -200px;
+    margin-left: -250px;
     -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
