@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask import jsonify
 from flask import render_template, request, redirect
@@ -66,6 +67,7 @@ def login():
                 curs = conn.cursor()
                 curs.execute('SELECT * FROM Tweet')
                 data = curs.fetchall()
+                print(data)
                 curs.close()
                 conn.close()
                 return render_template('home.html', data = data)
@@ -129,7 +131,9 @@ def post():
         global username
         title = request.form.get('title')
         content = request.form.get('content')
-        picture = request.form.get('picture')
+        file = request.files['picture']
+        file.save(os.path.join('static/pictures', file.filename))        
+        Spicture = f'static/pictures/{file.filename}'
         created_at = datetime.now(pytz.timezone('Asia/Tokyo'))
         
         dbname = 'ID_pass_database.db'
@@ -137,7 +141,9 @@ def post():
         cur = conn.cursor()
         cur.execute('SELECT * FROM Tweet')
         
-        cur.execute('INSERT INTO Tweet values(?,?,?,?,?)', (username,title,content,picture,created_at))
+
+        cur.execute('INSERT INTO Tweet values(?,?,?,?,?)', (username,title,content,Spicture,created_at))
+
         conn.commit()
         cur.close()
        
@@ -153,16 +159,30 @@ def post():
         return render_template('home.html', data = data)    
     else:
         return render_template('post.html')
-        
 
-
-
+# 投稿リストページ
+@app.route('/mypost')
+def mypost():
+    dbname = 'ID_pass_database.db'
+    conn = sqlite3.connect(dbname)
+    curs = conn.cursor()
+    curs.execute('SELECT * FROM Tweet')
+    data = curs.fetchall()
+    print(data)
+    print(username)
+    my_data = []
+    for i in range(len(data)):
+        if data[i][0] == username:
+            my_data.append(list(data[i]))
+                
+    print(my_data)
+    curs.close()
+    conn.close()
+    return render_template('mypost.html', data = my_data)
 
 @app.route('/index')
 def toppage():
     return render_template('index.html')
-
-
+    
 if __name__=='__main__':
-    app.run(debug=True)
-
+    app.run()
