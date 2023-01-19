@@ -59,7 +59,7 @@ span{
 .entry{  
     
     width: 300px;
-    height: 350px;
+    height: 470px;
 
     background:url(https://www.beiz.jp/images_L/texture/texture_00010.jpg);
     
@@ -80,7 +80,7 @@ span{
 
     position:absolute;
     z-index:-1;
-    top:35%;
+    top:23%;
     left:50%;
     margin-left: -150px;
     -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;

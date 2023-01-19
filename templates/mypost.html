@@ -23,14 +23,17 @@
     <main>
         <div class="space">
             {% for item in data %}
+            <br>
             <div class="post">
                 <span class="tape"><h3>{{item[1]}}</h3></span>
+                <br>
                 <div>{{item[2]}}</div>
                 <th>{{item[0]}}</th>
                 <th>{{item[4]}}</th>
                 {% if (item[3]!="") %} {% if (item[3]!=None) %}
                 <img src="{{item[3]}}"> {% endif %} {% endif %}
             </div>
+            <br><br>
             {% endfor %}
         </div>
     </main>
