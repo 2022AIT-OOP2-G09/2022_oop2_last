@@ -206,7 +206,7 @@ def mypost():
         print(my_data)
         curs.close()
         conn.close()
-        return render_template('mypost.html', data = my_data)
+        return render_template('mypost.html', data = my_data, dataLen = len(my_data))
 
 @app.route('/home')
 def home():
