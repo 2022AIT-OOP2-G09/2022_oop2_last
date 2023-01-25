@@ -34,6 +34,11 @@
                 <div class="right">{{item[4]}}</div>
             </div>
             <br><br>{% endfor %}
+            {% if (dataLen == 0) %}
+            <div class="noPosts">
+                <p>投稿がありません</p>
+            </div>
+            {% endif %}
         </div>
     </main>
 </body>
