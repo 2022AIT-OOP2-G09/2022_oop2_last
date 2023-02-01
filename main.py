@@ -1,11 +1,12 @@
 import os
-from flask import Flask
+from flask import Flask, redirect
 from flask import render_template, request
 
 import sqlite3
 
 from datetime import datetime
 import pytz
+
 
 
 # create the app
@@ -25,6 +26,7 @@ def login():
         global username
         username = request.form.get('username')   # HTMLのフォームからユーザー名を取得
         password = request.form.get('password')   # HTMLのフォームからパスワードを取得
+
 
         dbname = 'ID_pass_database.db'
         conn = sqlite3.connect(dbname)
